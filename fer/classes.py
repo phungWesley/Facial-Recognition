@@ -79,7 +79,7 @@ class Video(object):
             for idx, face in enumerate(list(frame)):
                 if not isinstance(face, dict):
                     break
-                rowdict.update({"box" + str(idx): face["box"]})
+                #rowdict.update({"box" + str(idx): face["box"]})
                 rowdict.update(
                     {emo + str(idx): face["emotions"][emo] for emo in emotions}
                 )
@@ -116,7 +116,7 @@ class Video(object):
 
     @staticmethod
     def get_emotions(df: pd.DataFrame) -> list:
-        """Get emotion columsn from results."""
+        """Get emotion columns from results."""
         columns = [x for x in df.columns if "box" not in x]
         return df[columns]
 
