@@ -1,5 +1,6 @@
 # Facial-Recognition
 Contributers: Taylor Nguyen (include sdsu email) , Wesley Phung (wphung3516@sdsu.edu)
+
 Prerequisities: 
 - OpenCV 3.2 or newer
 - Tensorflow 1.7.0 or newer (optional)
