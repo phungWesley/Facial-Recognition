@@ -1,6 +1,3 @@
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
-
 # MIT License
 #
 # Copyright (c) 2018 Justin Shenk
@@ -28,11 +25,10 @@
 # This code is derived from Iván de Paz Centeno's implementation of MTCNN
 # (https://github.com/ipazc/mtcnn/) and Octavia Arriaga's facial expression recognition repo
 # (https://github.com/oarriaga/face_classification).
-#
+
 import logging
 import os
 import pkg_resources
-import requests
 import sys
 from typing import Sequence, Tuple, Union
 
@@ -48,10 +44,7 @@ log = logging.getLogger("fer")
 
 NumpyRects = Union[np.ndarray, Sequence[Tuple[int, int, int, int]]]
 
-__author__ = "Justin Shenk"
-
 PADDING = 40
-SERVER_URL = "http://localhost:8501/v1/models/emotion_model:predict"
 
 
 class FER(object):
@@ -119,17 +112,7 @@ class FER(object):
         return
 
     def _classify_emotions(self, gray_faces: np.ndarray) -> np.ndarray:  # b x w x h
-        """Run faces through online or offline classifier."""
-        if self.tfserving:
-            gray_faces = np.expand_dims(gray_faces, -1)  # to 4-dimensions
-            instances = gray_faces.tolist()
-            response = requests.post(SERVER_URL, json={"instances": instances})
-            response.raise_for_status()
-
-            emotion_predictions = response.json()["predictions"]
-            return emotion_predictions
-        else:
-            return self.__emotion_classifier(gray_faces)
+        return self.__emotion_classifier(gray_faces)
 
     @staticmethod
     def pad(image):
