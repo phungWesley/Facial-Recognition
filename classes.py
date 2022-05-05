@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 import csv
 import logging
 import os
@@ -17,7 +15,6 @@ from tqdm.contrib.logging import logging_redirect_tqdm
 from .utils import draw_annotations
 
 log = logging.getLogger("fer")
-
 
 class Video(object):
     def __init__(
