@@ -97,6 +97,8 @@ class Video(object):
         df = pd.DataFrame(datalist)
         if self.first_face_only:
             df = self.get_first_face(df)
+        if self.get_second_face:
+            df = self.get_second_face(df)
         return df
 
     @staticmethod
@@ -109,6 +111,21 @@ class Video(object):
             return df
 
         columns = [x for x in df.columns if x[-1] == "0"]
+        new_columns = [x[:-1] for x in columns]
+        single_df = df[columns]
+        single_df.columns = new_columns
+        return single_df
+    
+    @staticmethod
+    def get_second_face(df: pd.DataFrame) -> pd.DataFrame:
+        assert isinstance(df, pd.DataFrame), "Must be a pandas DataFrame"
+        try:
+            int(df.columns[1][-1])
+        except ValueError:
+            # Already only one face in df
+            return df
+
+        columns = [x for x in df.columns if x[-1] == "1"]
         new_columns = [x[:-1] for x in columns]
         single_df = df[columns]
         single_df.columns = new_columns
