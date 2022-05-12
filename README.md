@@ -21,6 +21,7 @@ Packages:
 - tqdm 
 
 Troubleshooting installing packages : 
+
 In the event that there are issues with installing these packages, one main issue may be due to the fact 
 Python is not on its latest version. As stated in the prerequisite, Python 3.9 or newer is required as some packages were deprecated in older versions of Python
 where these packages are unable to be installed. This should resolve the issues for most cases; however, in the event that installation issues still persist, the imported package(s) were not able to be located. To solve this, try to run the terminal command: PIP INSTALL [PACKAGE].
